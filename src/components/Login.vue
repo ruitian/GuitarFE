@@ -1,41 +1,76 @@
 <template lang="html">
-  <div class="test">
-    ssssss
-  </div>
+  <el-form ref="form" :model="form" class="form_login" :rules="rules">
+    <el-form-item label="用户名" prop="nickname">
+       <el-input v-model="form.nickname" placeholder="输入用户名"></el-input>
+    </el-form-item>
 
+    <el-form-item label="密码" prop="password">
+       <el-input v-model="form.password" placeholder="输入密码" type="password"></el-input>
+    </el-form-item>
+
+    <el-form-item class="but_login">
+      <el-button type="primary" @click="onSubmit(form)" size="large">登录</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 <script>
 
-import {Row, Col, Table, TableColumn} from 'element-ui'
+import {
+  Form,
+  Input,
+  FormItem,
+  Select,
+  Option,
+  Button
+} from 'element-ui'
 
 export default {
 
   data () {
+    var checkNickname = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('用户名不能为空'))
+      }
+    }
+    var checkPassword = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('密码不能为空'))
+      }
+    }
     return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      form: {
+        nickname: '',
+        password: ''
+      },
+      rules: {
+        nickname: [
+          { validator: checkNickname, trigger: 'blur' }
+        ],
+        password: [
+          {validator: checkPassword, trigger: 'blur'}
+        ]
+      }
+    }
+  },
+  methods: {
+    onSubmit (formName) {
+      this.$refs.form.validate((valid) => {
+        console.log(valid)
+        if (valid) {
+          console.log('yes')
+        } else {
+          console.log('yes')
+        }
+      })
     }
   },
   components: {
-    'el-row': Row,
-    'el-col': Col,
-    'el-table': Table,
-    'el-table-column': TableColumn
+    'el-form': Form,
+    'el-input': Input,
+    'el-form-item': FormItem,
+    'el-select': Select,
+    'el-option': Option,
+    'el-button': Button
   }
 }
 
@@ -43,7 +78,15 @@ export default {
 
 <style lang="less">
 @import "../lib/css/mixin.less";
-.test {
-  .px2rem(font-size, 50);
+
+.form_login {
+  //.px2rem(width, 800);
+  //.px2rem(padding-top, 250);
+  padding: 5%;
+  margin: 0 auto;
+  button {
+    display: block;
+    width: 100%;
+  }
 }
 </style>

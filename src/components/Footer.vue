@@ -24,6 +24,7 @@ export default {
     display: flex;
     border-top: 1px #e1e1e1 solid;
     box-sizing: border-box;
+    background-color: #FFFAFA;
     a {
       width: 25%;
       display: block;
