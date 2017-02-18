@@ -10,9 +10,8 @@ new Vue({
   el: '#app',
   router,
   store,
-  template: '<App/>',
-  components: { App }
-})
+  render: h => h(App)
+}).$mount('#app')
 
 store.dispatch('increment', {
   amount: 10
