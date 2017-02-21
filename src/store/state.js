@@ -1,3 +1,5 @@
 export default {
-  count: 0
+  count: 0,
+  name: '',
+  token: null
 }
