@@ -18,8 +18,8 @@ export default {
 
   .footer_nav {
     padding: 0;
-    float: left;
     width: 100%;
+
     text-align: center;
     display: flex;
     border-top: 1px #e1e1e1 solid;
