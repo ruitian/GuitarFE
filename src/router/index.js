@@ -11,7 +11,13 @@ const router = new Router({
 router.beforeEach(({meta, path}, from, next) => {
   var {auth = true} = meta
   var isLogin = Boolean(store.state.token)
-
+  if (auth && !isLogin) {
+    store.dispatch('getCurrentUser').then(res => {
+      this.a.push('/meet')
+    }, err => {
+      console.log(err)
+    })
+  }
   if (auth && !isLogin && path !== '/login') {
     return next({path: '/login'})
   }
