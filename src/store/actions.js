@@ -5,12 +5,6 @@ export default {
   use (vue) {
     $http = vue.http
   },
-  addNum ({commit}, payload) {
-    return new Promise((resolve, reject) => {
-      commit(types.ADDNUM, {amount: 2})
-      resolve()
-    })
-  },
   getUserList ({commit}) {
     return new Promise((resolve, reject) => {
       $http.get('/api/accounts').then(response => {

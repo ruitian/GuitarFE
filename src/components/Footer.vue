@@ -4,7 +4,7 @@
     <router-link to='/meet' class="meet"><span class="span_meet">遇见</span></router-link>
     <router-link to='/square' class="square"><span class="span_square">广场</span></router-link>
     <router-link to='/message' class="message"><span class="span_message">消息</span></router-link>
-    <router-link to='/user' class="my"><span class="span_user">我的</span></router-link>
+    <router-link to='/profile' class="my"><span class="span_user">我的</span></router-link>
   </div>
 </template>
 

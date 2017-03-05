@@ -1,9 +1,6 @@
 import * as types from './mutation-type'
 
 export default {
-  [types.ADDNUM] (state, payload) {
-    state.count += payload.amount
-  },
   [types.GETUSERLIST] (state, payload) {
     state.name = payload.name
   },

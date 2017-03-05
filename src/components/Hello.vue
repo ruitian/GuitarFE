@@ -1,14 +1,14 @@
 <template>
   <div class="hello">
-    <h1>{{ count }}</h1>
+    <h1>{{ name }}</h1>
   </div>
 </template>
 
 <script>
 export default {
   computed: {
-    count () {
-      return this.$store.state.count
+    name () {
+      return this.$store.state.user.nickname
     }
   }
 }
