@@ -1,8 +1,6 @@
 <template>
   <div id="app" class="container">
-    <div class="content">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
     <div class="footer">
       <as-footer></as-footer>
     </div>
