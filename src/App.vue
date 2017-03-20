@@ -1,5 +1,5 @@
 <template>
-  <div class="page-group " id="app">
+  <div class="page-group" id="app">
     <as-header v-if="isLogin"></as-header>
     <router-view name="login"></router-view>
     <mt-tab-container v-model="active" v-if="isLogin">
@@ -17,7 +17,7 @@
       </mt-tab-container-item>
     </mt-tab-container>
 
-    <mt-tabbar fixed v-model="active" v-if="isLogin">
+    <mt-tabbar fixed v-model="active" v-if="isLogin" class="footer_nav">
       <mt-tab-item id="meet" href="#meet">
         <img slot="icon" src="./assets/meet.png">
         遇见
@@ -69,26 +69,28 @@ export default {
 
 <style lang="less">
 @import 'lib/css/mixin.less';
-// #app {
-//   margin: 0;
-//   padding: 0;
-//   color: #2c3e50;
-//   position: relative;
-//   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//
-//   .footer {
-//     width: 100%;
-//     max-width: 414px;
-//     .px2rem(height, 150);
-//     position: fixed;
-//     bottom: 0;
-//   }
-// }
-.mint-tabbar {
-  max-width: 414px;
-  margin: 0 auto;
+body {
+  margin: 0;
+}
+#app {
+  margin: 0;
+  padding: 0;
+  color: #2c3e50;
+  position: relative;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.v-modal {
+  background: transparent;
+}
+.footer_nav {
+  .mint-tab-item-label {
+    color: #9C9C9C;
+  }
+  .mint-tab-item.is-selected {
+    background-color: rgb(249, 233, 255);
+  }
 }
 
 </style>

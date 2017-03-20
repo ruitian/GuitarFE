@@ -1,9 +1,14 @@
 <template lang="html">
   <mt-popup
+  class="slide"
     position="left"
     v-model="slideShow"
     popup-transition="popup-fade"
-  ></mt-popup>
+  >
+    <div class="slide_content">
+      <h1>Hello</h1>
+    </div>
+  </mt-popup>
 </template>
 
 <script>
@@ -35,4 +40,13 @@ export default {
 </script>
 
 <style lang="less">
+@import '../lib/css/mixin.less';
+  .slide {
+    height: 100%;
+  }
+  .slide_content {
+    height: 100%;
+    width: 7rem;
+    background-color: #fff;
+  }
 </style>
