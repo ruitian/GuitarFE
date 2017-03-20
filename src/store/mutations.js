@@ -11,5 +11,11 @@ export default {
   [types.GETCURRENTUSER] (state, payload) {
     state.user = payload.user
     state.token = payload.token
+  },
+  [types.SHOWSLIDE] (state) {
+    state.isShowSlide = true
+  },
+  [types.CLOSESLIDE] (state) {
+    state.isShowSlide = false
   }
 }

@@ -1,15 +1,55 @@
 <template lang="html">
-
-  <div class="footer_nav">
-    <router-link to='/meet' class="meet"><span class="span_meet">遇见</span></router-link>
-    <router-link to='/square' class="square"><span class="span_square">广场</span></router-link>
-    <router-link to='/message' class="message"><span class="span_message">消息</span></router-link>
-    <router-link to='/profile' class="my"><span class="span_user">我的</span></router-link>
-  </div>
+  <!-- <nav class="bar bar-tab">
+    <router-link class="tab-item external" to="/meet">
+      <span class="icon icon-home"></span>
+      <span class="tab-label">遇见</span>
+    </router-link>
+    <router-link class="tab-item external" to="/square">
+      <span class="icon icon-browser"></span>
+      <span class="tab-label">广场</span>
+    </router-link>
+    <router-link class="tab-item external" to="/message">
+      <span class="icon icon-star"></span>
+      <span class="tab-label">消息</span>
+      <span class="badge">2</span>
+    </router-link>
+    <router-link class="tab-item external" to="/profile">
+      <span class="icon icon-me"></span>
+      <span class="tab-label">我的</span>
+    </router-link>
+  </nav> -->
+  <mt-tabbar fixed v-model="active">
+    <mt-tab-item id="meet">
+      <img slot="icon" src="../assets/meet.png">
+      遇见
+    </mt-tab-item>
+    <mt-tab-item id="square">
+      <img slot="icon" src="../assets/heart.png">
+      广场
+    </mt-tab-item>
+    <mt-tab-item id="message">
+      <img slot="icon" src="../assets/msg.png">
+      消息
+    </mt-tab-item>
+    <mt-tab-item id="profile">
+      <img slot="icon" src="../assets/my.png">
+      我的
+    </mt-tab-item>
+</mt-tabbar>
 </template>
 
 <script>
+import {Tabbar, TabItem} from 'mint-ui'
 export default {
+  components: {
+    'mt-tabbar': Tabbar,
+    'mt-tab-item': TabItem
+  },
+  data () {
+    return {
+      active: 'Hello'
+    }
+  }
 }
 </script>
 

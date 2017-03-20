@@ -1,6 +1,7 @@
 export default {
   count: 0,
   name: '',
-  token: null,
+  token: false,
+  isShowSlide: false,
   user: {}
 }

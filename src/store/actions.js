@@ -47,5 +47,11 @@ export default {
         reject(err.data.data.msg)
       })
     })
+  },
+  showSlide ({commit}) {
+    commit(types.SHOWSLIDE)
+  },
+  closeSlide ({commit}) {
+    commit(types.CLOSESLIDE)
   }
 }

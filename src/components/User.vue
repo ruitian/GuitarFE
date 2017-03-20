@@ -1,8 +1,5 @@
 <template>
   <div class="profile">
-    <div class="header">
-      <span>我的</span>
-    </div>
     <div class="content">
       <div class="img_info">
         <div class="avatar">
