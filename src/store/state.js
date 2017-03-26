@@ -3,5 +3,6 @@ export default {
   name: '',
   token: false,
   isShowSlide: false,
+  messageNum: 1,
   user: {}
 }

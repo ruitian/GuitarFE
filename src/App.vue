@@ -29,6 +29,7 @@
       <mt-tab-item id="message" href="#message">
         <img slot="icon" src="./assets/msg.png">
         消息
+        <mt-badge size="small" class="footer_badge" type="error" v-if="messages !== 0">{{ messages }}</mt-badge>
       </mt-tab-item>
       <mt-tab-item id="profile" href="#profile">
         <img slot="icon" src="./assets/my.png">
@@ -41,7 +42,7 @@
 </template>
 
 <script>
-import {Tabbar, TabItem, TabContainer, TabContainerItem} from 'mint-ui'
+import {Tabbar, TabItem, TabContainer, TabContainerItem, Badge} from 'mint-ui'
 import Header from './components/Header'
 import Slide from './components/Slide'
 export default {
@@ -49,6 +50,9 @@ export default {
   computed: {
     isLogin () {
       return this.$store.state.token
+    },
+    messages () {
+      return this.$store.state.messageNum
     }
   },
   components: {
@@ -56,6 +60,7 @@ export default {
     'mt-tab-item': TabItem,
     'mt-tab-container': TabContainer,
     'mt-tab-container-item': TabContainerItem,
+    'mt-badge': Badge,
     'as-header': Header,
     'as-slide': Slide
   },
@@ -81,15 +86,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.v-modal {
-  background: transparent;
-}
 .footer_nav {
   .mint-tab-item-label {
     color: #9C9C9C;
   }
-  .mint-tab-item.is-selected {
-    background-color: rgb(249, 233, 255);
+  .footer_badge {
+    position: absolute;
+    top: 10px;
   }
 }
 

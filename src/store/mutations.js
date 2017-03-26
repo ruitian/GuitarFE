@@ -17,5 +17,8 @@ export default {
   },
   [types.CLOSESLIDE] (state) {
     state.isShowSlide = false
+  },
+  [types.GETNICKNAME] (state, user) {
+    state.nickname = user.nickname
   }
 }

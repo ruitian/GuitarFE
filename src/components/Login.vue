@@ -1,6 +1,12 @@
 <template lang="html">
-  <el-form ref="userForm" :model="user" class="form_login" :rules="rules">
-    <el-form-item label="用户名" prop="nickname_or_email">
+  <form ref="loginForm" :model="user" class="form_login">
+    <div class="page-part">
+      <mt-field placeholder="用户名或邮箱" type="text" v-model.trim="user.nickname_or_email" :state='state' v-on:input="validate($event)"></mt-field>
+      <mt-field placeholder="密码" type="password" v-model.trim="user.password"></mt-field>
+      <mt-button plain @click="loginUser" :disabled="disabled">Login In</mt-button>
+    </div>
+
+    <!-- <el-form-item label="用户名" prop="nickname_or_email">
        <el-input v-model="user.nickname_or_email" placeholder="输入用户名"></el-input>
     </el-form-item>
 
@@ -10,8 +16,8 @@
 
     <el-form-item class="but_login">
       <el-button type="primary" @click="loginUser" size="large">登录</el-button>
-    </el-form-item>
-  </el-form>
+    </el-form-item> -->
+  </form>
 </template>
 <script>
 
@@ -21,53 +27,53 @@ import {
   FormItem,
   Select,
   Option,
-  Button,
   Message
 } from 'element-ui'
+import { Field, Button, MessageBox } from 'mint-ui'
 
 export default {
 
   data () {
-    var checkNickname = (rule, value, callback) => {
-      if (!value) {
-        callback(new Error('用户名不能为空'))
-      }
-      callback()
-    }
-    var checkPassword = (rule, value, callback) => {
-      if (!value) {
-        callback(new Error('密码不能为空'))
-      }
-      callback()
-    }
     return {
       user: {
         nickname_or_email: '',
         password: ''
       },
-      rules: {
-        nickname_or_email: [
-          { validator: checkNickname, trigger: 'blur' }
-        ],
-        password: [
-          {validator: checkPassword, trigger: 'blur'}
-        ]
-      }
+      state: ''
     }
   },
   methods: {
-    loginUser () {
-      this.$refs.userForm.validate((valid) => {
-        if (valid) {
-          this.$store.dispatch('userLogin', this.user).then(res => {
-            this.$router.push('/meet')
-            Message.success(res)
-          }, (error) => {
-            Message.error(error)
+    validate (value) {
+      setTimeout(() => {
+        if (value) {
+          this.$store.dispatch('getNickname', {'nickname': value}).then(res => {
+            this.state = 'success'
+          }, err => {
+            if (err) {
+              this.state = 'error'
+            }
           })
         } else {
+          this.state = ''
         }
+      }, 1000)
+    },
+    loginUser () {
+      this.$store.dispatch('userLogin', this.user).then(res => {
+        this.$router.push('/meet')
+        Message.success(res)
+      }, (error) => {
+        MessageBox.alert(error, '提示')
       })
+    }
+  },
+  computed: {
+    disabled () {
+      if (this.user.nickname_or_email && this.user.password) {
+        return false
+      } else {
+        return true
+      }
     }
   },
   components: {
@@ -76,7 +82,9 @@ export default {
     'el-form-item': FormItem,
     'el-select': Select,
     'el-option': Option,
-    'el-button': Button
+    'mt-field': Field,
+    'mt-button': Button,
+    'mt-message-box': MessageBox
   }
 }
 
@@ -89,6 +97,7 @@ export default {
   padding: 5%;
   margin: 0 auto;
   max-width: 414px;
+  margin-top: 4rem;
   button {
     display: block;
     width: 100%;

@@ -48,6 +48,23 @@ export default {
       })
     })
   },
+  getNickname ({commit}, nickname) {
+    return new Promise((resolve, reject) => {
+      $http.post('/api/account/nickname', nickname).then(response => {
+        const nickname = response.data
+        if (!nickname.data.ret) {
+          commit(types.GETNICKNAME, {
+            nickname: nickname.data
+          })
+          resolve(nickname)
+        } else {
+          reject(nickname.data.msg)
+        }
+      }, err => {
+        reject(err.data.data.msg)
+      })
+    })
+  },
   showSlide ({commit}) {
     commit(types.SHOWSLIDE)
   },
