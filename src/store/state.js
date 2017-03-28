@@ -4,5 +4,7 @@ export default {
   token: false,
   isShowSlide: false,
   messageNum: 1,
+  // 绑定学校的验证码
+  bindSchoolCode: '',
   user: {}
 }

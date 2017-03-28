@@ -32,7 +32,6 @@ import {
 import { Field, Button, MessageBox } from 'mint-ui'
 
 export default {
-
   data () {
     return {
       user: {

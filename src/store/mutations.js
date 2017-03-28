@@ -20,5 +20,11 @@ export default {
   },
   [types.GETNICKNAME] (state, user) {
     state.nickname = user.nickname
+  },
+  /* 绑定学校 */
+  [types.INITBINDFORM] (state, code) {
+    state.bindSchoolCode = code
+  },
+  [types.BINDSCHOOL] (state) {
   }
 }

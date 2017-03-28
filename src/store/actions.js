@@ -65,10 +65,37 @@ export default {
       })
     })
   },
+  // 侧边栏
   showSlide ({commit}) {
     commit(types.SHOWSLIDE)
   },
   closeSlide ({commit}) {
     commit(types.CLOSESLIDE)
+  },
+  /* 绑定学生信息 */
+  initBindForm ({commit}) {
+    return new Promise((resolve, reject) => {
+      $http.get('/api/crawl').then(response => {
+        const code = response.data
+        commit(types.INITBINDFORM, code.data.code_img)
+        resolve(code)
+      }, error => {
+        reject(error)
+      })
+    })
+  },
+  bindSchool ({commit}, student) {
+    return new Promise((resolve, reject) => {
+      $http.post('/api/crawl', student).then(response => {
+        const data = response.data.data
+        if (data.ret === -1) {
+          reject(data.msg)
+        } else {
+          resolve(data.msg)
+        }
+      }, error => {
+        reject(error)
+      })
+    })
   }
 }

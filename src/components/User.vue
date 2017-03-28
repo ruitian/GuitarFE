@@ -36,6 +36,7 @@
 
 <script>
   export default {
+    name: 'profile',
     data () {
       return {
         username: this.$store.state.user.nickname,
