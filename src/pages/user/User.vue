@@ -3,7 +3,7 @@
     <div class="content">
       <div class="img_info">
         <div class="avatar">
-          <img src="../assets/avatar.png" alt="">
+          <img src="../../assets/avatar.png" alt="">
         </div>
         <div class="info">
           <span class="user_name">{{ username }}</span>
@@ -47,7 +47,7 @@
 </script>
 
 <style lang="less">
-@import '../lib/css/mixin.less';
+@import '../../lib/css/mixin.less';
   .header {
     width: 100%;
     max-width: 414px;
@@ -71,7 +71,7 @@
       .px2rem(width, 80);
       .px2rem(height, 80);
       content:"";
-      background-image: url(../assets/title_heart.png);
+      background-image: url(../../assets/title_heart.png);
     }
   }
 
@@ -181,7 +181,7 @@
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
         .px2rem(font-size, 30);
         span::before {
-          background-image: url(../assets/photo.png);
+          background-image: url(../../assets/photo.png);
         }
       }
       .up_word {
@@ -190,7 +190,7 @@
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
         .px2rem(font-size, 30);
         span::before {
-          background-image: url(../assets/paper.png);
+          background-image: url(../../assets/paper.png);
         }
       }
       .up_date {
@@ -199,7 +199,7 @@
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
         .px2rem(font-size, 30);
         span::before {
-          background-image: url(../assets/caffe.png);
+          background-image: url(../../assets/caffe.png);
         }
       }
       .up_question {
@@ -208,7 +208,7 @@
         -webkit-box-flex: 1.0; /* Safari 和 Chrome */
         .px2rem(font-size, 30);
         span::before {
-          background-image: url(../assets/question.png);
+          background-image: url(../../assets/question.png);
         }
       }
     }

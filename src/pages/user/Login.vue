@@ -5,18 +5,6 @@
       <mt-field placeholder="密码" type="password" v-model.trim="user.password"></mt-field>
       <mt-button plain @click="loginUser" :disabled="disabled">Login In</mt-button>
     </div>
-
-    <!-- <el-form-item label="用户名" prop="nickname_or_email">
-       <el-input v-model="user.nickname_or_email" placeholder="输入用户名"></el-input>
-    </el-form-item>
-
-    <el-form-item label="密码" prop="password">
-       <el-input v-model="user.password" placeholder="输入密码" type="password"></el-input>
-    </el-form-item>
-
-    <el-form-item class="but_login">
-      <el-button type="primary" @click="loginUser" size="large">登录</el-button>
-    </el-form-item> -->
   </form>
 </template>
 <script>
@@ -59,7 +47,7 @@ export default {
     },
     loginUser () {
       this.$store.dispatch('userLogin', this.user).then(res => {
-        this.$router.push('/meet')
+        this.$router.push('/')
         Message.success(res)
       }, (error) => {
         MessageBox.alert(error, '提示')
@@ -90,7 +78,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "../lib/css/mixin.less";
+@import "../../lib/css/mixin.less";
 
 .form_login {
   padding: 5%;

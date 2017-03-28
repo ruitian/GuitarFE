@@ -1,9 +1,11 @@
 export default [
   {
     path: '/',
-    components: {
-      meet: resolve => require(['../App.vue'], resolve)
-    }
+    component: resolve => require(['../pages/index/Index.vue'], resolve)
+  },
+  {
+    path: '/login',
+    component: resolve => require(['../pages/user/Login.vue'], resolve)
   }
   // {
   //   path: '/meet',
@@ -18,11 +20,6 @@ export default [
   //   }
   // },
   // {
-  //   path: '/login',
-  //   components: {
-  //     login: resolve => require(['../components/Login.vue'], resolve)
-  //   }
-  // },
   // {
   //   path: '/bindSchool',
   //   components: {

@@ -5,7 +5,7 @@ import store from '../store'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'hash',
+  mode: 'history',
   routes
 })
 
@@ -14,7 +14,7 @@ router.beforeEach(({meta, path}, from, next) => {
   var isLogin = Boolean(store.state.token)
   if (auth && !isLogin) {
     store.dispatch('getCurrentUser').then(res => {
-      this.a.push('/meet')
+      this.a.push('/')
     }, err => {
       console.log(err)
     })
