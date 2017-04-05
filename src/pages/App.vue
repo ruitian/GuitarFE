@@ -46,6 +46,7 @@
 
 <style lang="less">
   .container {
+    overflow: hidden;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -65,11 +66,11 @@
   }
 
   .modal {
-    position: absolute;
+    position: fixed;
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: #e1e1e1;
-    opacity: 0.5;
+    background-color: rgba(0,0,0,.5);
+    opacity: 0.8;
   }
 </style>
