@@ -1,5 +1,5 @@
 <template>
-  <div class="page-group" id="app">
+  <div class="page-group">
     <router-view name="login"></router-view>
     <mt-tab-container v-model="active" v-if="isLogin">
       <mt-tab-container-item id="meet">
@@ -15,8 +15,8 @@
         <as-user></as-user>
       </mt-tab-container-item>
     </mt-tab-container>
-  
-    <mt-tabbar fixed v-model="active" v-if="isLogin" class="footer_nav">
+
+    <mt-tabbar v-model="active" v-if="isLogin" class="footer_nav">
       <mt-tab-item id="meet">
         <img slot="icon" src="../../assets/meet.png"> 遇见
       </mt-tab-item>
@@ -31,8 +31,6 @@
         <img slot="icon" src="../../assets/my.png"> 我的
       </mt-tab-item>
     </mt-tabbar>
-  
-    <as-slide></as-slide>
   </div>
 </template>
 
@@ -44,11 +42,10 @@
     TabContainerItem,
     Badge
   } from 'mint-ui'
-  import Slide from '../../components/Slide'
   import User from '../user/User'
   import BindSchool from '../../components/BindSchool'
   import Meet from '../../components/Meet'
-  
+
   export default {
     name: 'index',
     computed: {
@@ -65,7 +62,6 @@
       'mt-tab-container': TabContainer,
       'mt-tab-container-item': TabContainerItem,
       'mt-badge': Badge,
-      'as-slide': Slide,
       'as-user': User,
       'as-bind-school': BindSchool,
       'as-meet': Meet
@@ -83,18 +79,19 @@
   body {
     margin: 0;
   }
-  
-  #app {
-    margin: 0;
-    padding: 0;
-    color: #2c3e50;
-    position: relative;
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+
+  .slide-open .footer_nav {
+    left: 7rem;
+    right: -7rem;
   }
-  
+
   .footer_nav {
+    position: fixed;
+    left: 0;
+    transition: left .4s cubic-bezier(0.19,1,.22,1);
+    -moz-transition: left .4s cubic-bezier(0.19,1,.22,1);
+    -webkit-transition: left .4s cubic-bezier(0.19,1,.22,1);
+    -o-transition: left .4s cubic-bezier(0.19,1,.22,1);
     .mint-tab-item-label {
       color: #9C9C9C;
     }

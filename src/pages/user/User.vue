@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <div class="content">
+    <div class="profile-content">
       <div class="img_info">
         <div class="avatar">
           <img src="../../assets/avatar.png" alt="">
@@ -75,7 +75,7 @@
     }
   }
 
-  .content {
+  .profile-content {
     .img_info {
       display:-moz-box; /* Firefox */
       display:-webkit-box; /* Safari and Chrome */
