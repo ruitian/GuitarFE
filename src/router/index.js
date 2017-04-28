@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './routers'
 import store from '../store'
+// import MessageBox from 'mint-ui'
 Vue.use(Router)
 
 const router = new Router({
@@ -14,7 +15,11 @@ router.beforeEach(({meta, path}, from, next) => {
   var isLogin = Boolean(store.state.token)
   if (auth && !isLogin) {
     store.dispatch('getCurrentUser').then(res => {
-      this.a.push('/')
+      if (store.state.user.is_bind_school) {
+        this.a.push('/')
+      } else {
+        this.a.push('bindSchool')
+      }
     }, err => {
       console.log(err)
     })

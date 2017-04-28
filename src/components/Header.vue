@@ -2,7 +2,7 @@
   <mt-header :title=title>
     <router-link to="" slot="left" v-if="router">
       <mt-button class="header_button">
-        <img src="../assets/avatar.png" height="30" width="30" slot="icon" @click="showSlideFn">
+        <img :src="avatar" height="30" width="30" slot="icon" @click="showSlideFn">
       </mt-button>
     </router-link>
   </mt-header>
@@ -11,6 +11,11 @@
 <script>
 import { Header, Button } from 'mint-ui'
 export default {
+  data () {
+    return {
+      avatar: this.$store.state.user.avatar_url
+    }
+  },
   components: {
     'mt-header': Header,
     'mt-button': Button

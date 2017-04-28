@@ -74,8 +74,8 @@
       background-image: url(../../assets/title_heart.png);
     }
   }
-
-  .profile-content {
+  
+  .content {
     .img_info {
       display:-moz-box; /* Firefox */
       display:-webkit-box; /* Safari and Chrome */

@@ -8,7 +8,7 @@
         <img :src="codeImg" height="45px" width="100px" @click="refreshCode">
       </mt-field>
       <div class="page-button-group">
-        <mt-button type="primary" size="large" plain @click="bindSchool" :disabled="buttonDisabled">绑定</mt-button>
+        <button @click="bindSchool" :disabled="buttonDisabled" class="bind-btn">绑定</button>
       </div>
     </form>
   </div>
@@ -80,7 +80,7 @@ export default {
       }
       this.$store.dispatch('bindSchool', student).then(res => {
         Indicator.close()
-        this.$route.push('/#meet"')
+        this.$route.push('/#meet')
       }, err => {
         Indicator.close()
         MessageBox('提示', err)
@@ -105,10 +105,53 @@ export default {
 </script>
 
 <style lang="less">
+.group-part{
+  width: 90%;
+  margin: 0 auto;
+}
 .bind-form {
   margin-top: 1rem;
   .page-button-group {
     margin-top: 1rem;
+    button {
+      display: block;
+      margin-top: 1rem;
+      margin: 0 auto;
+      width: 100%;
+      height: 1.2rem;
+      line-height: 1.2rem;
+      border-top-left-radius: 0.6rem;
+      border-top-right-radius: 0.6rem;
+      border-bottom-left-radius: 0.6rem;
+      border-bottom-right-radius: 0.6rem;
+    }
+    .bind-btn {
+      opacity: 0.6;
+      padding: 0 12px;
+      color: #fff;
+      background-color: #ef4f4f;
+
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: 0;
+      box-sizing: border-box;
+      font-size: 18px;
+      outline: 0;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+    }
+    .bind-btn::after {
+      background-color: #000;
+      content: " ";
+      opacity: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+    }
   }
 }
 </style>

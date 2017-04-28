@@ -6,7 +6,7 @@ export default [
   {
     path: '/login',
     component: resolve => require(['../pages/user/Login.vue'], resolve)
-  }
+  },
   // {
   //   path: '/meet',
   //   components: {
@@ -20,10 +20,12 @@ export default [
   //   }
   // },
   // {
-  // {
-  //   path: '/bindSchool',
-  //   components: {
-  //     bindSchool: resolve => require(['../components/BindSchool.vue'], resolve)
-  //   }
-  // }
+  {
+    path: '/bindSchool',
+    name: 'bindSchool',
+    component: resolve => require(['../pages/user/BindSchool.vue'], resolve)
+    // components: {
+    //   bindSchool: resolve => require(['../pages/user/BindSchool.vue'], resolve)
+    // }
+  }
 ]

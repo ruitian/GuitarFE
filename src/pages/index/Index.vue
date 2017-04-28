@@ -1,6 +1,5 @@
 <template>
   <div class="page-group">
-    <router-view name="login"></router-view>
     <mt-tab-container v-model="active" v-if="isLogin">
       <mt-tab-container-item id="meet">
         <as-meet></as-meet>
@@ -8,8 +7,8 @@
       <mt-tab-container-item id="square">
         222
       </mt-tab-container-item>
-      <mt-tab-container-item id="bindSchool">
-        <as-bind-school></as-bind-school>
+      <mt-tab-container-item id="message">
+        <as-message></as-message>
       </mt-tab-container-item>
       <mt-tab-container-item id="profile">
         <as-user></as-user>
@@ -23,7 +22,7 @@
       <mt-tab-item id="square">
         <img slot="icon" src="../../assets/heart.png"> 广场
       </mt-tab-item>
-      <mt-tab-item id="bindSchool">
+      <mt-tab-item id="message">
         <img slot="icon" src="../..//assets/msg.png"> 消息
         <mt-badge size="small" class="footer_badge" type="error" v-if="messages !== 0">{{ messages }}</mt-badge>
       </mt-tab-item>
@@ -43,7 +42,7 @@
     Badge
   } from 'mint-ui'
   import User from '../user/User'
-  import BindSchool from '../../components/BindSchool'
+  import Message from '../message/Message'
   import Meet from '../../components/Meet'
 
   export default {
@@ -63,7 +62,7 @@
       'mt-tab-container-item': TabContainerItem,
       'mt-badge': Badge,
       'as-user': User,
-      'as-bind-school': BindSchool,
+      'as-message': Message,
       'as-meet': Meet
     },
     data () {

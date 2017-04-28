@@ -45,7 +45,14 @@
 </script>
 
 <style lang="less">
+
+  html,body,#app{
+    margin:0px;
+    height:100%;
+  }
+
   .container {
+    height: 100%;
     overflow: hidden;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -53,6 +60,7 @@
   }
 
   .content {
+    height: 100%;
     position: relative;
     left: 0;
     transition: left .4s cubic-bezier(0.19,1,.22,1);
