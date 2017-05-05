@@ -1,5 +1,8 @@
 <template>
   <div class="profile">
+    <transition name="slide-fade">
+      <as-student v-if="studentShow"></as-student>
+    </transition>
     <div class="profile-content">
       <div class="img_info">
         <div class="avatar">
@@ -12,6 +15,11 @@
         <div class="func_span">
           <router-link to='' class="btn">资料</router-link>
         </div>
+      </div>
+      <div class="follow">
+        <span>最近来访</span> |
+        <span>关注 0</span> |
+        <span>粉丝 0</span>
       </div>
       <div class="func_menu">
         <div class="up_img">
@@ -30,18 +38,49 @@
           <router-link to=""><span>友情询问</span></router-link>
         </div>
       </div>
+
+      <div class="profile_list">
+        <div class="cell" @click="studentShow = !studentShow">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> 学生信息
+          <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="cell" to='/'>
+          <i class="fa fa-commenting" aria-hidden="true"></i> 我的话题
+          <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="cell" to='/'>
+          <i class="fa fa-music" aria-hidden="true"></i> 我的兴趣
+          <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="cell" to='/'>
+          <i class="fa fa-flask" aria-hidden="true"></i> 我的活动
+          <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="cell" to='/'>
+          <i class="fa fa-cog" aria-hidden="true"></i> 设置
+          <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import { Cell } from 'mint-ui'
+  import Student from './Student'
+
   export default {
     name: 'profile',
     data () {
       return {
         username: this.$store.state.user.nickname,
-        uid: this.$store.state.user.uid
+        uid: this.$store.state.user.uid,
+        studentShow: false
       }
+    },
+    components: {
+      'mt-cell': Cell,
+      'as-student': Student
     }
   }
 </script>
@@ -74,13 +113,12 @@
       background-image: url(../../assets/title_heart.png);
     }
   }
-  
-  .content {
+
+  .profile {
     .img_info {
       display:-moz-box; /* Firefox */
       display:-webkit-box; /* Safari and Chrome */
       display:box;
-      border-bottom: 1px solid #e1e1e1;
       .px2rem(height, 250);
       .avatar {
         .px2rem(line-height, 250);
@@ -139,6 +177,7 @@
           text-decoration: none;
           .px2rem(font-size, 30);
           color: black;
+          -webkit-tap-highlight-color:rgba(0,0,0,0);
         }
         .btn::after {
           .px2rem(margin-left, 15);
@@ -146,15 +185,26 @@
         }
       }
     }
-
+    .follow {
+      width: 90%;
+      margin: 0 auto;
+      padding: 5px 0 5px 0;
+      span {
+        display: inline-block;
+        text-align: center;
+        width: 30%;
+      }
+    }
     .func_menu {
       .px2rem(height, 180);
-      background-color: rgb(249, 232, 240);
+      // background-color: rgb(249, 232, 240);
       display:-moz-box; /* Firefox */
       display:-webkit-box; /* Safari and Chrome */
       display:box;
       .px2rem(line-height, 180);
       text-align: center;
+      border-top: .3rem #e1e1e1 solid;
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
       b {
         .px2rem(font-size, 80);
         color: rgb(178, 186, 186);
@@ -211,6 +261,45 @@
           background-image: url(../../assets/question.png);
         }
       }
+    }
+
+    .profile_list {
+      border-top: .3rem #e1e1e1 solid;
+      border-bottom: .3rem #e1e1e1 solid;
+      font-size: 0.4rem;
+      font-family: monospace;
+      .cell {
+        width: 95%;
+        margin-left: 10%;
+        height: 1.3rem;
+        border-bottom: 1px #e1e1e1 solid;
+        line-height: 1.3rem;
+        display: block;
+        text-decoration: none;
+        color: #919C9D;
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+        span {
+          position: absolute;
+          right: 0.5rem;
+        }
+      }
+      .cell:last-child {
+        width: 95%;
+        margin-left: 10%;
+        height: 1.3rem;
+        border: 0;
+      }
+    }
+
+    .slide-fade-enter-active {
+      transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+      transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-active {
+      transform: translateX(10px);
+      opacity: 0;
     }
   }
 

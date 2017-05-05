@@ -1,14 +1,14 @@
 <template lang="html">
   <div class="group-part bind-form">
     <form ref="bindForm" :model="student">
-      <mt-field label="学校" v-model.trim="student.xh" value="山东理工大学" disabled=disabled :disableClear=true></mt-field>
+      <mt-field label="学校" value="山东理工大学" disabled=disabled :disableClear=true></mt-field>
       <mt-field label="学号" v-model.trim="student.xh" :attr="{ maxlength: 11 }" :state="state" :disableClear=true></mt-field>
       <mt-field label="密码" v-model.trim="student.passwd" type="password" :disableClear=true></mt-field>
       <mt-field label="验证码" v-model.trim="student.code" :attr="{ maxlength: 4 }" :disableClear=true>
         <img :src="codeImg" height="45px" width="100px" @click="refreshCode">
       </mt-field>
       <div class="page-button-group">
-        <button @click="bindSchool" :disabled="buttonDisabled" class="bind-btn">绑定</button>
+        <button @click="bindSchool" :disabled="buttonDisabled" class="bind-btn" type="button">绑定</button>
       </div>
     </form>
   </div>
