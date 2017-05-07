@@ -1,7 +1,6 @@
 <template>
   <div class="container" :class="{'slide-open': showSlide}">
     <div class="content">
-      <as-header v-if="isLogin"></as-header>
       <router-view></router-view>
     </div>
     <as-slip></as-slip>
@@ -10,9 +9,7 @@
 </template>
 
 <script>
-  import Header from '../components/Header'
-  import Slip from '../components/Slip'
-  import Index from './index/Index'
+  import Slip from './components/Slip'
 
   export default {
     computed: {
@@ -25,8 +22,6 @@
       }
     },
     components: {
-      'as-header': Header,
-      'as-index': Index,
       'as-slip': Slip
     },
     methods: {
