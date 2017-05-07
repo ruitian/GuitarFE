@@ -13,7 +13,7 @@ import Footer from 'src/components/Footer'
 export default {
   data () {
     return {
-      message: 'Hello'
+      message: '广场'
     }
   },
   components: {

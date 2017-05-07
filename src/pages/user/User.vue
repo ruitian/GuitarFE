@@ -1,5 +1,6 @@
 <template>
   <div class="profile">
+    <as-header></as-header>
     <transition name="slide-fade">
       <as-student v-if="studentShow"></as-student>
     </transition>
@@ -62,12 +63,15 @@
         </div>
       </div>
     </div>
+    <as-footer></as-footer>
   </div>
 </template>
 
 <script>
   import { Cell } from 'mint-ui'
   import Student from './Student'
+  import Header from 'src/components/Header'
+  import Footer from 'src/components/Footer'
 
   export default {
     name: 'profile',
@@ -80,7 +84,9 @@
     },
     components: {
       'mt-cell': Cell,
-      'as-student': Student
+      'as-student': Student,
+      'as-header': Header,
+      'as-footer': Footer
     }
   }
 </script>

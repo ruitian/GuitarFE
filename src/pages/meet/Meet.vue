@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="message">
+  <div class="meet">
     <as-header></as-header>
     {{ message }}
     <as-footer></as-footer>
@@ -13,7 +13,7 @@ import Footer from 'src/components/Footer'
 export default {
   data () {
     return {
-      message: 'Hello'
+      message: 'Meet'
     }
   },
   components: {

@@ -11,11 +11,13 @@
         <button @click="bindSchool" :disabled="buttonDisabled" class="bind-btn" type="button">绑定</button>
       </div>
     </form>
+    <as-footer></as-footer>
   </div>
 </template>
 
 <script>
 import {Field, Indicator, Button, MessageBox} from 'mint-ui'
+import Footer from 'src/components/Footer'
 
 export default {
   data () {
@@ -67,7 +69,8 @@ export default {
   },
   components: {
     'mt-field': Field,
-    'mt-button': Button
+    'mt-button': Button,
+    'as-footer': Footer
   },
   methods: {
     bindSchool () {
