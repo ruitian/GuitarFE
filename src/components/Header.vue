@@ -1,8 +1,7 @@
 <template lang="html">
   <mt-header :title='headTitle'>
     <section class="header_button" slot="left" v-if="goBack" @click="$router.go(-1)">
-      <mt-button class="header_button">
-        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      <mt-button class="header_button" icon="back">
       </mt-button>
     </section>
     <router-link to="" slot="left" v-if="!isProfile && !goBack">
