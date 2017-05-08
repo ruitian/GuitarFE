@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="student_info">
-    <as-header headTitle="学生信息" go-back='true'></as-header>
+    <as-header headTitle="学生信息" :go-back='true'></as-header>
     <section class="group-part">
       <mt-cell title="学校">{{ school }}</mt-cell>
       <mt-cell title="学院">{{ college }}</mt-cell>

@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <as-header :head-title="title" :go-back=false></as-header>
+    <as-header :head-title="title" :go-back='false'></as-header>
     <div class="group-part bind-form">
       <form ref="bindForm" :model="student">
         <mt-field label="学校" value="山东理工大学" disabled=disabled :disableClear=true></mt-field>

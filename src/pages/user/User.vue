@@ -91,7 +91,6 @@
       getStudentInfo () {
         const uid = {'uid': this.$store.state.user.uid}
         this.$store.dispatch('getStudentInfo', uid).then(res => {
-          console.log(res)
         }, err => {
           console.log(err)
         })

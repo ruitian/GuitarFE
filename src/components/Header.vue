@@ -4,7 +4,7 @@
       <mt-button class="header_button" icon="back">
       </mt-button>
     </section>
-    <router-link to="" slot="left" v-if="isProfile && !goBack">
+    <router-link to="" slot="left" v-if="!isProfile && !goBack">
       <mt-button class="header_button">
         <img :src="avatar" height="30" width="30" slot="icon" @click="showSlideFn">
       </mt-button>
