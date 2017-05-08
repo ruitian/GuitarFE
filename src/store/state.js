@@ -6,5 +6,14 @@ export default {
   messageNum: 1,
   // 绑定学校的验证码
   bindSchoolCode: '',
-  user: {}
+  user: {
+  },
+  student: {
+    'school': '',
+    'college': '',
+    'major': '',
+    'student_class': '',
+    'number': '',
+    'student_name': ''
+  }
 }

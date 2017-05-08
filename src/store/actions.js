@@ -97,5 +97,21 @@ export default {
         reject(error)
       })
     })
+  },
+  // 获取学生信息
+  getStudentInfo ({commit}, uid) {
+    return new Promise((resolve, reject) => {
+      $http.post('/api/account/student', uid).then(response => {
+        const data = response.data.data
+        commit(types.GETSTUDENTINFO, data)
+        if (data.ret === -1) {
+          reject(data.msg)
+        } else {
+          resolve(data)
+        }
+      }, error => {
+        reject(error)
+      })
+    })
   }
 }

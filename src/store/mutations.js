@@ -26,5 +26,9 @@ export default {
     state.bindSchoolCode = code
   },
   [types.BINDSCHOOL] (state) {
+  },
+  // 获取学生信息
+  [types.GETSTUDENTINFO] (state, payload) {
+    state.student = payload
   }
 }

@@ -11,3 +11,5 @@ export const CLOSESLIDE = 'closeSlide'
 export const INITBINDFORM = 'initBindForm'
 // 请求数据
 export const BINDSCHOOL = 'bindSchool'
+// 获取用户的学生信息
+export const GETSTUDENTINFO = 'getStudentInfo'

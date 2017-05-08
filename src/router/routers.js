@@ -21,7 +21,13 @@ export default [
   },
   {
     path: '/profile',
-    component: resolve => require(['../pages/user/User.vue'], resolve)
+    component: resolve => require(['../pages/user/User.vue'], resolve),
+    children: [
+      {
+        path: 'student',
+        component: resolve => require(['../pages/user/Student.vue'], resolve)
+      }
+    ]
   },
   {
     path: '/bindSchool',

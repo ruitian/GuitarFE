@@ -1,9 +1,6 @@
 <template>
   <div class="profile">
-    <as-header></as-header>
-    <transition name="slide-fade">
-      <as-student v-if="studentShow"></as-student>
-    </transition>
+    <as-header head-title="个人中心"></as-header>
     <div class="profile-content">
       <div class="img_info">
         <div class="avatar">
@@ -41,10 +38,10 @@
       </div>
 
       <div class="profile_list">
-        <div class="cell" @click="studentShow = !studentShow">
+        <router-link class="cell" @click.native="getStudentInfo" to="/profile/student">
           <i class="fa fa-graduation-cap" aria-hidden="true"></i> 学生信息
           <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-        </div>
+        </router-link>
         <div class="cell" to='/'>
           <i class="fa fa-commenting" aria-hidden="true"></i> 我的话题
           <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
@@ -64,6 +61,9 @@
       </div>
     </div>
     <as-footer></as-footer>
+    <transition name="router-slid" mode="out-in">
+       <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -78,8 +78,7 @@
     data () {
       return {
         username: this.$store.state.user.nickname,
-        uid: this.$store.state.user.uid,
-        studentShow: false
+        uid: this.$store.state.user.uid
       }
     },
     components: {
@@ -87,6 +86,16 @@
       'as-student': Student,
       'as-header': Header,
       'as-footer': Footer
+    },
+    methods: {
+      getStudentInfo () {
+        const uid = {'uid': this.$store.state.user.uid}
+        this.$store.dispatch('getStudentInfo', uid).then(res => {
+          console.log(res)
+        }, err => {
+          console.log(err)
+        })
+      }
     }
   }
 </script>
@@ -306,6 +315,14 @@
     .slide-fade-enter, .slide-fade-leave-active {
       transform: translateX(10px);
       opacity: 0;
+    }
+
+    .router-slid-enter-active, .router-slid-leave-active {
+    transition: all .4s;
+    }
+    .router-slid-enter, .router-slid-leave-active {
+        transform: translate3d(2rem, 0, 0);
+        opacity: 0;
     }
   }
 
