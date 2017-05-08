@@ -1,23 +1,25 @@
 <template lang="html">
-  <div class="group-part bind-form">
-    <form ref="bindForm" :model="student">
-      <mt-field label="学校" value="山东理工大学" disabled=disabled :disableClear=true></mt-field>
-      <mt-field label="学号" v-model.trim="student.xh" :attr="{ maxlength: 11 }" :state="state" :disableClear=true></mt-field>
-      <mt-field label="密码" v-model.trim="student.passwd" type="password" :disableClear=true></mt-field>
-      <mt-field label="验证码" v-model.trim="student.code" :attr="{ maxlength: 4 }" :disableClear=true>
-        <img :src="codeImg" height="45px" width="100px" @click="refreshCode">
-      </mt-field>
-      <div class="page-button-group">
-        <button @click="bindSchool" :disabled="buttonDisabled" class="bind-btn" type="button">绑定</button>
-      </div>
-    </form>
-    <as-footer></as-footer>
-  </div>
+  <section>
+    <as-header :head-title="title" :go-back=false></as-header>
+    <div class="group-part bind-form">
+      <form ref="bindForm" :model="student">
+        <mt-field label="学校" value="山东理工大学" disabled=disabled :disableClear=true></mt-field>
+        <mt-field label="学号" v-model.trim="student.xh" :attr="{ maxlength: 11 }" :state="state" :disableClear=true></mt-field>
+        <mt-field label="密码" v-model.trim="student.passwd" type="password" :disableClear=true></mt-field>
+        <mt-field label="验证码" v-model.trim="student.code" :attr="{ maxlength: 4 }" :disableClear=true>
+          <img :src="codeImg" height="45px" width="100px" @click="refreshCode">
+        </mt-field>
+        <div class="page-button-group">
+          <button @click="bindSchool" :disabled="buttonDisabled" class="bind-btn" type="button">绑定</button>
+        </div>
+      </form>
+    </div>
+  </section>
 </template>
 
 <script>
 import {Field, Indicator, Button, MessageBox} from 'mint-ui'
-import Footer from 'src/components/Footer'
+import Header from 'src/components/Header'
 
 export default {
   data () {
@@ -26,7 +28,8 @@ export default {
         xh: '',
         passwd: '',
         code: ''
-      }
+      },
+      title: '绑定学生信息'
     }
   },
   created () {
@@ -70,7 +73,7 @@ export default {
   components: {
     'mt-field': Field,
     'mt-button': Button,
-    'as-footer': Footer
+    'as-header': Header
   },
   methods: {
     bindSchool () {
@@ -83,7 +86,12 @@ export default {
       }
       this.$store.dispatch('bindSchool', student).then(res => {
         Indicator.close()
-        this.$route.push('/#meet')
+        MessageBox({
+          title: '提示',
+          message: '绑定成功!',
+          showCancelButton: false
+        })
+        this.$router.push('/meet')
       }, err => {
         Indicator.close()
         MessageBox('提示', err)
