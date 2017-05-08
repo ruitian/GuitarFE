@@ -45,7 +45,11 @@ export default {
     },
     loginUser () {
       this.$store.dispatch('userLogin', this.user).then(res => {
-        this.$router.push('/')
+        if (this.$store.state.user.is_bind_school) {
+          this.$router.push('/')
+        } else {
+          this.$router.push('/bindSchool')
+        }
       }, (error) => {
         MessageBox.alert(error, '提示')
       })
