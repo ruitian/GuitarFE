@@ -1,10 +1,10 @@
 <template lang="html">
   <mt-header :title='headTitle'>
-    <section class="header_button" slot="left" v-if="goBack" @click="$router.go(-1)">
+    <section class="header_button" slot="left" v-if='goBack' @click="$router.go(-1)">
       <mt-button class="header_button" icon="back">
       </mt-button>
     </section>
-    <router-link to="" slot="left" v-if="!isProfile && !goBack">
+    <router-link to="" slot="left" v-if="isProfile && !goBack">
       <mt-button class="header_button">
         <img :src="avatar" height="30" width="30" slot="icon" @click="showSlideFn">
       </mt-button>
@@ -20,7 +20,11 @@ export default {
       avatar: this.$store.state.user.avatar_url
     }
   },
-  props: ['goBack', 'headTitle'],
+  // props: ['goBack', 'headTitle'],
+  props: {
+    headTitle: String,
+    goBack: Boolean
+  },
   components: {
     'mt-header': Header,
     'mt-button': Button
