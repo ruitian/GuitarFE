@@ -86,12 +86,9 @@ export default {
       }
       this.$store.dispatch('bindSchool', student).then(res => {
         Indicator.close()
-        MessageBox({
-          title: '提示',
-          message: '绑定成功!',
-          showCancelButton: false
+        MessageBox.alert('绑定成功!').then(action => {
+          this.$router.push('/')
         })
-        this.$router.push('/meet')
       }, err => {
         Indicator.close()
         MessageBox('提示', err)
