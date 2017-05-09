@@ -8,6 +8,7 @@
       <mt-cell title="班级">{{ student_class }}</mt-cell>
       <mt-cell title="学号">{{ number }}</mt-cell>
       <mt-cell title="姓名">{{ name }}</mt-cell>
+      <button @click="goToAddress('/bindSchool')" type="button" class="btn">更换绑定信息</button>
     </section>
   </div>
 </template>
@@ -40,6 +41,11 @@
         return this.$store.state.student.student_class
       }
     },
+    methods: {
+      goToAddress (path) {
+        this.$router.push(path)
+      }
+    },
     components: {
       'mt-cell': Cell,
       'as-header': Header
@@ -59,6 +65,34 @@
 
     .group-part {
       padding: 0 .5rem 0 .5rem;
+      button {
+        display: block;
+        margin-top: 1rem;
+        width: 100%;
+        height: 1.2rem;
+        line-height: 1.2rem;
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
+        border-bottom-left-radius: 0.75rem;
+        border-bottom-right-radius: 0.75rem;
+      }
+      .btn {
+        opacity: 0.6;
+        padding: 0 12px;
+        color: #fff;
+        background-color: #ef4f4f;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 0;
+        box-sizing: border-box;
+        font-size: 18px;
+        outline: 0;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+      }
     }
   }
 </style>
