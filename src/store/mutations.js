@@ -8,6 +8,9 @@ export default {
     state.user = payload.user
     state.token = payload.token
   },
+  [types.USERLOGOUT] (state) {
+    state = ''
+  },
   [types.GETCURRENTUSER] (state, payload) {
     state.user = payload.user
     state.token = payload.token

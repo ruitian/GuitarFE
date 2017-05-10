@@ -30,6 +30,17 @@ export default {
       })
     })
   },
+  userLogout ({commit}) {
+    return new Promise((resolve, reject) => {
+      $http.post('/api/account/logout').then(response => {
+        const data = response.data.data
+        resolve(data)
+        commit(types.USERLOGOUT)
+      }, error => {
+        reject(error.data.data.msg)
+      })
+    })
+  },
   getCurrentUser ({commit}) {
     return new Promise((resolve, reject) => {
       $http.get('/api/account/user').then(response => {

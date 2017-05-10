@@ -26,6 +26,16 @@ export default [
       {
         path: 'student',
         component: resolve => require(['../pages/user/Student.vue'], resolve)
+      },
+      {
+        path: 'setting',
+        component: resolve => require(['../pages/user/setting/Setting.vue'], resolve),
+        children: [
+          {
+            path: 'about',
+            component: resolve => require(['../pages/user/setting/children/About.vue'], resolve)
+          }
+        ]
       }
     ]
   },

@@ -54,10 +54,10 @@
           <i class="fa fa-flask" aria-hidden="true"></i> 我的活动
           <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
         </div>
-        <div class="cell" to='/'>
+        <router-link class="cell" to="/profile/setting">
           <i class="fa fa-cog" aria-hidden="true"></i> 设置
           <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-        </div>
+        </router-link>
       </div>
     </div>
     <as-footer></as-footer>

@@ -1,5 +1,7 @@
 export const GETUSERLIST = 'getUserList'
 export const USERLOGIN = 'userLogin'
+// 登出
+export const USERLOGOUT = 'userLogout'
 export const GETCURRENTUSER = 'getCurrentUser'
 export const GETNICKNAME = 'getNickname'
 // 侧边栏
