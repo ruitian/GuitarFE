@@ -3,7 +3,7 @@
     <as-header :head-title="title" :go-back='false'></as-header>
     <div class="group-part bind-form">
       <form ref="bindForm" :model="student">
-        <mt-field label="学校" value="山东理工大学" readonly=true :disableClear=true></mt-field>
+        <mt-field label="学校" value="山东理工大学" :readonly=true :disableClear=true></mt-field>
         <mt-field label="学号" v-model.trim="student.xh" :attr="{ maxlength: 11 }" :state="state" :disableClear=true></mt-field>
         <mt-field label="密码" v-model.trim="student.passwd" type="password" :disableClear=true></mt-field>
         <mt-field label="验证码" v-model.trim="student.code" :attr="{ maxlength: 4 }" :disableClear=true>
