@@ -36,6 +36,17 @@ export default [
             component: resolve => require(['../pages/user/setting/children/About.vue'], resolve)
           }
         ]
+      },
+      // 动态
+      {
+        path: 'dynamic',
+        component: resolve => require(['../pages/user/dynamic/Dynamic.vue'], resolve),
+        children: [
+          {
+            path: 'address',
+            component: resolve => require(['../pages/user/dynamic/children/Address.vue'], resolve)
+          }
+        ]
       }
     ]
   },

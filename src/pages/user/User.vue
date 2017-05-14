@@ -25,7 +25,7 @@
         </div>
         <b>|</b>
         <div class="up_word">
-          <router-link to=""><span>文字传情</span></router-link>
+          <router-link to="/profile/dynamic"><span>文字传情</span></router-link>
         </div>
         <b>|</b>
         <div class="up_date">
