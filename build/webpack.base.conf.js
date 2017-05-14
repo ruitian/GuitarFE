@@ -32,6 +32,9 @@ module.exports = {
       'components': resolve('src/components')
     }
   },
+  externals: {
+    'AMap': 'window.AMap'
+  },
   module: {
     rules: [
       {
