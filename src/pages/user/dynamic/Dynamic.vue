@@ -14,6 +14,7 @@
       </div>
     </div>
     <div class="address">
+      <i class="fa fa-map-marker" aria-hidden="true"></i>
       <router-link to="/profile/dynamic/address">所在位置</router-link>
     </div>
     <transition name="router-slid" mode="out-in">
@@ -47,7 +48,7 @@ export default {
         var count = this.images.length
         var add = document.querySelector('.add')
         var input = document.querySelector('.file_input')
-        var left = 2 * count
+        var left = 1.5 * count
         input.style.left = add.style.left = left + 'rem'
         if (count === 4) {
           input.disabled = 'disabled'
@@ -74,10 +75,11 @@ export default {
       resize: none;
     }
     .upload {
+      padding: 0 .5rem 0 .5rem;
       .file_input {
         position: absolute;
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
         opacity: 0;
         z-index: 100;
       }
@@ -91,8 +93,8 @@ export default {
       }
       .add {
         position: absolute;
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
       }
       .hide {
         display: none;
@@ -105,22 +107,29 @@ export default {
     }
     .center {
       width: 100%;
-      height: 2rem;
+      height: 1.5rem;
+      padding: 0 .5rem 0 .5rem;
       .item {
-        width: 2rem;
+        width: 1,5rem;
         float: left;
       }
       img {
-        widht: 2rem;
-        height: 2rem;
+        widht: 1.5rem;
+        height: 1.5rem;
       }
     }
     .address {
       width: 100%;
       clear: both;
-      height: 2rem;
-      line-height: 2rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
       padding: 0 .5rem 0 .5rem;
+      color: #bfbfbf;
+      font-size: .4rem;
+      a {
+        text-decoration: none;
+        color: black;
+      }
     }
   }
 </style>

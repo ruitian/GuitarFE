@@ -1,18 +1,18 @@
 <template lang="html">
   <div class="choose_address">
     <as-header :head-title='title' :go-back='true'></as-header>
-    <mt-cell title="正在搜索附近位置" v-show="isShowMessage">
-      <mt-spinner type="double-bounce"></mt-spinner>
-    </mt-cell>
-    <ul v-for="address in addresses">
-      <li>{{ address.name }}</li>
-    </ul>
+    <div class="page_list" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
+      <mt-cell title="正在搜索附近位置" v-show="isShowMessage">
+        <mt-spinner type="double-bounce"></mt-spinner>
+      </mt-cell>
+      <mt-cell v-for="address in addresses" :title="address.name" :label="address.address"></mt-cell>
+    </div>
   </div>
 </template>
 
 <script>
 import Header from 'src/components/Header'
-import { Indicator, Spinner, Cell } from 'mint-ui'
+import { Spinner, Cell, Loadmore } from 'mint-ui'
 import AMap from 'AMap'
 
 export default {
@@ -21,23 +21,24 @@ export default {
       title: '选择位置',
       isShowMessage: true,
       addresses: [],
-      activeAddress: ''
+      activeAddress: '',
+      wrapperHeight: 0
     }
   },
   created () {
     this.getAddress()
   },
+  mounted () {
+    this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top
+  },
   components: {
     'as-header': Header,
     'mt-spinner': Spinner,
-    'mt-cell': Cell
+    'mt-cell': Cell,
+    'mt-loadmore': Loadmore
   },
   methods: {
     getAddress () {
-      Indicator.open({
-        text: '加载中...',
-        spinnerType: 'fading-circle'
-      })
       var map, geolocation
       map = new AMap.Map('container', {
         resizeEnable: true
@@ -46,34 +47,21 @@ export default {
         geolocation = new AMap.Geolocation({
           enableHighAccuracy: true,
           timeout: 10000,
-          buttonOffset: new AMap.Pixel(10, 20),
-          zoomToAccuracy: true,
+          // buttonOffset: new AMap.Pixel(10, 20),
+          zoomToAccuracy: false,
           buttonPosition: 'RB'
         })
-        map.addControl(geolocation)
+        // map.addControl(geolocation)
         geolocation.getCurrentPosition()
         AMap.event.addListener(geolocation, 'complete', this.onComplete)
       })
     },
     onComplete (data) {
-      var placeSearch, map
-      map = new AMap.Map('container', {
-        resizeEnable: true
-      })
-      AMap.service(['AMap.PlaceSearch'], () => {
-        placeSearch = new AMap.PlaceSearch({
-          pageSize: 20,
-          type: '餐饮服务|购物服务|生活服务|体育休闲服务|医疗保健服务|住宿服务|风景名胜|商务住宅|政府机构及社会团体|科教文化服务|交通设施服务|金融保险服务|公司企业|道路附属设施|地名地址信息|公共设施',
-          pageIndex: 1,
-          city: '010',
-          map: map,
-          panel: 'panel'
-        })
-      })
-      var cpoint = [data.position.getLng(), data.position.getLat()]
-      placeSearch.searchNearBy('', cpoint, 200, (status, result) => {
+      const location = data.position.getLng() + ',' + data.position.getLat()
+      const url = '/api/address/around?location=' + location + '&offset=15&page=1'
+      this.$http.get(url).then(response => {
+        this.addresses = response.data.pois
         this.isShowMessage = false
-        this.addresses = result.poiList.pois
       })
     }
   }
@@ -89,5 +77,8 @@ export default {
     bottom: 0;
     z-index: 1000;
     background-color: #ffffff;
+    .page_list {
+      overflow: scroll;
+    }
   }
 </style>
