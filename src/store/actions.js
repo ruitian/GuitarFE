@@ -124,5 +124,9 @@ export default {
         reject(error)
       })
     })
+  },
+  // 更改地址信息
+  changeAddress ({commit}, address) {
+    commit(types.CHANGEADDRESS, address)
   }
 }

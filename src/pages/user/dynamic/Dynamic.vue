@@ -15,7 +15,8 @@
     </div>
     <div class="address">
       <i class="fa fa-map-marker" aria-hidden="true"></i>
-      <router-link to="/profile/dynamic/address">所在位置</router-link>
+      <router-link to="/profile/dynamic/address" v-if="address">{{ address.name }}</router-link>
+      <router-link to="/profile/dynamic/address" v-else>所在位置</router-link>
     </div>
     <transition name="router-slid" mode="out-in">
       <router-view></router-view>
@@ -38,6 +39,16 @@ export default {
     'mt-field': Field,
     'as-header': Header
   },
+  computed: {
+    address () {
+      const address = this.$store.state.addressInfo
+      if (address.name) {
+        return address
+      } else {
+        return null
+      }
+    }
+  },
   methods: {
     onUpload (e) {
       var formData = new FormData()
@@ -58,6 +69,9 @@ export default {
         this.images.push({'src': 'http://img1.vued.vanthink.cn/vued0a233185b6027244f9d43e653227439a.png'})
       })
     }
+  },
+  destroyed () {
+    this.$store.dispatch('changeAddress', {})
   }
 }
 </script>

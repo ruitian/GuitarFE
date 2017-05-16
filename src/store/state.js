@@ -8,6 +8,8 @@ export default {
   bindSchoolCode: '',
   user: {
   },
+  // 动态地址
+  addressInfo: {},
   student: {
     'school': '',
     'college': '',

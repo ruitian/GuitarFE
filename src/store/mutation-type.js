@@ -15,3 +15,5 @@ export const INITBINDFORM = 'initBindForm'
 export const BINDSCHOOL = 'bindSchool'
 // 获取用户的学生信息
 export const GETSTUDENTINFO = 'getStudentInfo'
+// 动态中选择、更改地址
+export const CHANGEADDRESS = 'changeAddress'

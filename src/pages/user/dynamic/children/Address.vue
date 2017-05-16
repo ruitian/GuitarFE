@@ -5,7 +5,9 @@
       <mt-cell title="正在搜索附近位置" v-show="isShowMessage">
         <mt-spinner type="double-bounce"></mt-spinner>
       </mt-cell>
-      <mt-cell v-for="address in addresses" :title="address.name" :label="address.address"></mt-cell>
+      <div class="" v-for="address in addresses" @click="chooseAddress(address)">
+        <mt-cell :title="address.name" :label="address.address"></mt-cell>
+      </div>
     </div>
   </div>
 </template>
@@ -63,6 +65,10 @@ export default {
         this.addresses = response.data.pois
         this.isShowMessage = false
       })
+    },
+    chooseAddress (address) {
+      this.$store.dispatch('changeAddress', address)
+      this.$router.go(-1)
     }
   }
 }

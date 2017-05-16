@@ -33,5 +33,9 @@ export default {
   // 获取学生信息
   [types.GETSTUDENTINFO] (state, payload) {
     state.student = payload
+  },
+  // 更改地址信息
+  [types.CHANGEADDRESS] (state, address) {
+    state.addressInfo = address
   }
 }
