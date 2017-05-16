@@ -5,9 +5,11 @@ import App from 'App'
 import router from './router'
 import store from './store'
 import Mint from 'mint-ui'
+import ElementUI from 'element-ui'
 
 /* eslint-disable no-new */
 Vue.use(Mint)
+Vue.use(ElementUI)
 
 new Vue({
   router,
