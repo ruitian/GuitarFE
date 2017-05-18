@@ -54,6 +54,7 @@
 </script>
 
 <style lang="less">
+@import '../../lib/css/mixin.less';
   .student_info {
     position: absolute;
     top: 0;
@@ -62,7 +63,12 @@
     bottom: 0;
     z-index: 1000;
     background-color: #ffffff;
-
+    .mint-cell {
+      min-height: 1.5rem;
+    }
+    .mint-cell-wrapper {
+      font-size: 0.44rem;
+    }
     .group-part {
       padding: 0 .5rem 0 .5rem;
       button {
@@ -87,7 +93,7 @@
         appearance: none;
         border: 0;
         box-sizing: border-box;
-        font-size: 18px;
+        font-size: 0.5rem;
         outline: 0;
         overflow: hidden;
         position: relative;

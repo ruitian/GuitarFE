@@ -284,14 +284,14 @@
     .profile_list {
       border-top: .3rem #e1e1e1 solid;
       border-bottom: .3rem #e1e1e1 solid;
-      font-size: 0.4rem;
+      font-size: 0.35rem;
       font-family: monospace;
       .cell {
         width: 95%;
         margin-left: 10%;
-        height: 1.3rem;
+        height: 1.2rem;
         border-bottom: 1px #e1e1e1 solid;
-        line-height: 1.3rem;
+        line-height: 1.2rem;
         display: block;
         text-decoration: none;
         color: #919C9D;
