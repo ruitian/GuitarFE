@@ -38,6 +38,10 @@
       </div>
 
       <div class="profile_list">
+        <router-link class="cell" to="/profile/dynamic/my">
+          <i class="fa fa-star" aria-hidden="true"></i> 我的动态
+          <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+        </router-link>
         <router-link class="cell" @click.native="getStudentInfo" to="/profile/student">
           <i class="fa fa-graduation-cap" aria-hidden="true"></i> 学生信息
           <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>

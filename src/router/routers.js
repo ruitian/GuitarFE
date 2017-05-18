@@ -47,6 +47,10 @@ export default [
             component: resolve => require(['../pages/user/dynamic/children/Address.vue'], resolve)
           }
         ]
+      },
+      {
+        path: 'dynamic/my',
+        component: resolve => require(['../pages/user/dynamic/MyDynamic.vue'], resolve)
       }
     ]
   },

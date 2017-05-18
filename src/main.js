@@ -11,6 +11,17 @@ import ElementUI from 'element-ui'
 Vue.use(Mint)
 Vue.use(ElementUI)
 
+Vue.filter('dynamic_img', (value) => {
+  return 'static/dynamic_img/' + value[0]
+})
+Vue.filter('timestampToDate', (timestamp) => {
+  var date = new Date(timestamp)
+  var Y = date.getFullYear() + '-'
+  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
+  var D = date.getDate()
+  return Y + M + D
+})
+
 new Vue({
   router,
   store,

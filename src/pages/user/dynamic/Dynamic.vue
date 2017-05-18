@@ -164,7 +164,7 @@ export default {
         float: left;
       }
       img {
-        widht: 1.5rem;
+        width: 1.5rem;
         height: 1.5rem;
       }
     }
