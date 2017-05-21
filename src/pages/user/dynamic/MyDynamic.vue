@@ -2,7 +2,7 @@
   <section class="dynamic">
     <as-header :head-title="title" :go-back="true"></as-header>
     <section ref="wrapper" :style="{ height: wrapperHeight + 'px' }" class="dynamic_list">
-      <div class="dynamic_my" v-for="dynamic in dynamics">
+      <div class="dynamic_my" v-show="isShowDynamics" v-for="dynamic in dynamics">
         <div class="dynamic_img" v-if="dynamic.img_url">
           <img :src="dynamic.img_url|dynamic_img" width="100%" alt="">
         </div>
@@ -16,9 +16,12 @@
           </div>
           <div class="dynamic_func">
             <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>10000</span>
-            <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+            <span @click="deleteDynamic(dynamic)"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
           </div>
         </div>
+      </div>
+      <div class="no_dynamic">
+        <p v-show="!isShowDynamics">您还没发表任何动态</p>
       </div>
     </section>
   </section>
@@ -26,6 +29,7 @@
 
 <script>
 import Header from 'src/components/Header'
+import { MessageBox } from 'mint-ui'
 
 export default {
   data () {
@@ -33,6 +37,7 @@ export default {
       title: '我的动态',
       message: 'Meet',
       dynamics: [],
+      isShowDynamics: false,
       wrapperHeight: 0
     }
   },
@@ -44,9 +49,34 @@ export default {
   },
   created () {
     this.$http.get('/api/dynamic?offset=0&limit=15').then(response => {
-      const data = response.data.data
       this.dynamics = data
+      if (this.dynamics.length > 0) {
+        this.isShowDynamics = true
+      }
     })
+  },
+  methods: {
+    deleteDynamic (dynamic) {
+      const index = this.dynamics.indexOf(dynamic)
+      MessageBox.confirm('确定执行此操作?').then(action => {
+        const data = {'did': dynamic.id}
+        this.$http.post('/api/dynamic', data).then(response => {
+          const data = response.data.data
+          if (data.ret === 0) {
+            this.dynamics.splice(index, index + 1)
+            this.$message({
+              message: data.msg,
+              type: 'success'
+            })
+          } else {
+            this.$message({
+              message: data.msg,
+              type: 'error'
+            })
+          }
+        })
+      })
+    }
   }
 }
 </script>
@@ -65,6 +95,15 @@ export default {
       overflow-x: hidden;
       img {
         border: 0;
+      }
+      .no_dynamic {
+        p {
+          display: inline-block;
+          text-align: center;
+          height: 2rem;
+          color: #bfbfbf;
+          padding: 1rem;
+        }
       }
       .dynamic_my {
         border-bottom: 0.3rem #bfbfbf solid;

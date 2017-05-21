@@ -124,6 +124,9 @@ export default {
     .mint-field-core {
       resize: none;
     }
+    .mint-cell-value {
+      font-size: 0.3rem;
+    }
     .upload {
       padding: 0 .5rem 0 .5rem;
       .file_input {
@@ -156,7 +159,6 @@ export default {
       }
     }
     .center {
-      width: 100%;
       height: 1.5rem;
       padding: 0 .5rem 0 .5rem;
       .item {
@@ -169,7 +171,6 @@ export default {
       }
     }
     .address {
-      width: 100%;
       clear: both;
       height: 1.5rem;
       line-height: 1.5rem;
@@ -207,7 +208,7 @@ export default {
         appearance: none;
         border: 0;
         box-sizing: border-box;
-        font-size: 18px;
+        font-size: 0.5rem;
         outline: 0;
         overflow: hidden;
         position: relative;
