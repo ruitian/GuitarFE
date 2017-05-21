@@ -49,6 +49,7 @@ export default {
   },
   created () {
     this.$http.get('/api/dynamic?offset=0&limit=15').then(response => {
+      const data = response.data.data
       this.dynamics = data
       if (this.dynamics.length > 0) {
         this.isShowDynamics = true
