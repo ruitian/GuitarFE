@@ -12,7 +12,7 @@ Vue.use(Mint)
 Vue.use(ElementUI)
 
 Vue.filter('dynamic_img', (value) => {
-  return 'static/dynamic_img/' + value[0]
+  return 'static/dynamic_img/' + value
 })
 Vue.filter('timestampToDate', (timestamp) => {
   var date = new Date(timestamp)
@@ -21,7 +21,18 @@ Vue.filter('timestampToDate', (timestamp) => {
   var D = date.getDate()
   return Y + M + D
 })
-
+Vue.filter('setImgClassName', (imgList) => {
+  var length = imgList.length
+  if (length === 1) {
+    return 'dynamic_img_1'
+  } else if (length === 2) {
+    return 'dynamic_img_2'
+  } else if (length === 3) {
+    return 'dynamic_img_3'
+  } else {
+    return 'dynamic_img_4'
+  }
+})
 new Vue({
   router,
   store,
