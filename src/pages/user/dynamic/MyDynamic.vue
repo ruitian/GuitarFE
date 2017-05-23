@@ -4,7 +4,7 @@
     <section ref="wrapper" :style="{ height: wrapperHeight + 'px' }" class="dynamic_list">
       <div class="dynamic_my" v-show="isShowDynamics" v-for="dynamic in dynamics">
         <div class="dynamic_img" v-if="dynamic.img_url">
-          <img :src="dynamic.img_url|dynamic_img" width="100%" alt="">
+          <img :src="dynamic.img_url[0]|dynamic_img">
         </div>
         <div class="dynamic_content">
           {{ dynamic.content }}
