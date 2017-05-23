@@ -15,7 +15,7 @@
             {{ dynamic.create_on|timestampToDate }}
           </div>
           <div class="dynamic_func">
-            <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>10000</span>
+            <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{dynamic.praises }}</span>
             <span @click="deleteDynamic(dynamic)"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
           </div>
         </div>
@@ -95,6 +95,7 @@ export default {
       overflow-y: scroll;
       overflow-x: hidden;
       img {
+        width: 100%;
         border: 0;
       }
       .no_dynamic {

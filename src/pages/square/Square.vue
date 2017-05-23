@@ -18,13 +18,16 @@
             <img :src="img|dynamic_img">
           </div>
           <div class="dynamic_footer">
-            <div class="dynamic_address">
+            <div class="dynamic_address" v-if="dynamic.address_city">
               {{ dynamic.address_city }} · {{ dynamic.address_name}}
             </div>
             <div class="dynamic_func">
-              <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 10000</span>
+              <span><i class="fa fa-thumbs-o-up" @click="praise($event, dynamic.id)" aria-hidden="true"></i> {{ dynamic.praises }}</span>
               <span><i class="fa fa-comments-o" aria-hidden="true"></i></i></span>
             </div>
+          </div>
+          <div class="dynamic_time">
+            {{ dynamic.create_on|timeStampToWord }}
           </div>
         </div>
       </div>
@@ -36,6 +39,7 @@
 <script>
 import Header from 'src/components/Header'
 import Footer from 'src/components/Footer'
+import { Indicator } from 'mint-ui'
 
 export default {
   data () {
@@ -52,13 +56,33 @@ export default {
     'as-header': Header
   },
   mounted () {
+    Indicator.open({ spinnerType: 'fading-circle' })
     this.wrapperHeight = document.documentElement.clientHeight -
       this.$refs.wrapper.getBoundingClientRect().top - this.$refs.wrapper.getBoundingClientRect().bottom - 20
     this.$http.get('/api/dynamic/all').then(response => {
       this.dynamics = response.data.data
+      Indicator.close()
     }, error => {
       console.log(error)
     })
+  },
+  methods: {
+    praise ($event, dynamicId) {
+      const praiseCount = parseInt($event.target.nextSibling.data)
+      var data = {'did': dynamicId}
+      this.$http.post('/api/dynamic/praise', data).then(response => {
+        const data = response.data.data
+        if (data.ret === 0) {
+          $event.target.nextSibling.data = praiseCount + 1
+        } else {
+          this.$http.delete('/api/dynamic/praise?did=' + dynamicId).then(response => {
+            if (response.data.data.ret === 0) {
+              $event.target.nextSibling.data = praiseCount - 1
+            }
+          })
+        }
+      })
+    }
   }
 }
 </script>
@@ -95,7 +119,9 @@ export default {
     margin-bottom: 0.5rem;
   }
   .dynamic_footer {
+    clear: both;
     height: 0.5rem;
+    padding-top: 0.3rem;
     line-height: 0.5rem;
     .dynamic_address {
       width: 60%;
@@ -106,15 +132,18 @@ export default {
       float: right;
       width: 40%;
       span {
+        width: 50%;
         display: inline-block;
+        float: left;
         text-align: center;
         color: #bfbfbf;
-      }
-      span:first-child {
-        float: right;
-        width: 2rem;
+        display: inline;
       }
     }
+  }
+  .dynamic_time {
+    clear: both;
+    color: #B8B8B8;
   }
 }
   .item {
