@@ -177,4 +177,9 @@ export default {
       display: none;
     }
   }
+  .slide-open .square {
+    position: absolute;
+    left: 7rem;
+    right: -7rem;
+  }
 </style>
