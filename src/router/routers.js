@@ -20,6 +20,10 @@ export default [
     component: resolve => require(['../pages/message/Message.vue'], resolve)
   },
   {
+    path: '/chat/:userid',
+    component: resolve => require(['../pages/meet/Chat.vue'], resolve)
+  },
+  {
     path: '/profile',
     component: resolve => require(['../pages/user/User.vue'], resolve),
     children: [
