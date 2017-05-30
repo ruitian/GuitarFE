@@ -61,5 +61,9 @@ export default [
   {
     path: '/bindSchool',
     component: resolve => require(['../pages/user/BindSchool.vue'], resolve)
+  },
+  {
+    path: '/card/:uid',
+    component: resolve => require(['../pages/user/card.vue'], resolve)
   }
 ]
