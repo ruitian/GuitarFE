@@ -3,14 +3,16 @@
     <as-header :head-title="headTitle" :go-back="true"></as-header>
     <section class="info">
       <div class="avatar">
-        <img :src="user.avatar_url" alt="">
+        <img :src="user.avatar_url" v-if="user.avatar_url">
+        <img src="../../assets/man.png" v-else>
       </div>
       <div class="information">
         <span class="user-name">{{ user.nickname }}</span>
         <span class="user-uid">ID：{{ user.uid }}</span>
       </div>
       <div class="follow-user" v-if="!isSelf">
-        <button type="button" name="button">+ 关注</button>
+        <button type="button" name="button" v-if="!user.isFollowing" @click="followUser(user)">+ 关注</button>
+        <button type="button" name="button" v-else @click="unFollowUser(user)">取消关注</button>
       </div>
     </section>
     <section class="student-info">
@@ -35,20 +37,62 @@ export default {
       headTitle: '详细资料',
       user: {},
       message: 'Hello',
-      isSelf: false
+      isSelf: false,
+      user_uid: '',
+      user_id: ''
     }
   },
   methods: {
+    followUser (user) {
+      const postData = {
+        'followed_id': this.user_id
+      }
+      this.$http.post('/api/account/follow', postData).then(response => {
+        const data = response.data.data
+        if (data.ret === 0) {
+          user.isFollowing = true
+          this.$message({
+            message: data.msg,
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: data.msg,
+            type: 'error'
+          })
+        }
+      })
+    },
+    unFollowUser (user) {
+      this.$http.delete('/api/account/follow?followed_id=' + this.user_id).then(response => {
+        const data = response.data.data
+        if (data.ret === 0) {
+          user.isFollowing = false
+          this.$message({
+            message: data.msg,
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: data.msg,
+            type: 'error'
+          })
+        }
+      })
+    }
   },
   components: {
     'mt-cell': Cell,
     'as-header': Header
   },
   mounted () {
+    const param = this.$route.params.uid
+    this.user_id = param.split('-')[0]
+    this.user_uid = param.split('-')[1]
     const postData = {
-      'aid': this.$route.params.uid
+      'aid': this.user_uid
     }
-    if (this.$route.params.uid === this.$store.state.user.uid) {
+    if (this.user_uid === this.$store.state.user.uid) {
       this.isSelf = true
     }
     this.$http.post('/api/account/aid', postData).then(response => {

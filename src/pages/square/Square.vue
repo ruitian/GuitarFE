@@ -9,7 +9,7 @@
         </div>
         <div class="content">
           <div class="user_nickname">
-            <router-link to='/'>{{ dynamic.user.nickname }}</router-link>
+            <router-link :to="'/card/' + dynamic.user.id + '-' + dynamic.user.uid">{{ dynamic.user.nickname }}</router-link>
           </div>
           <div class="dynamic_content">
             {{ dynamic.content }}
@@ -176,10 +176,5 @@ export default {
     .page_list:last-child {
       display: none;
     }
-  }
-  .slide-open .square {
-    position: absolute;
-    left: 7rem;
-    right: -7rem;
   }
 </style>
