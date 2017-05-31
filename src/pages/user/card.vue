@@ -9,7 +9,7 @@
         <span class="user-name">{{ user.nickname }}</span>
         <span class="user-uid">ID：{{ user.uid }}</span>
       </div>
-      <div class="follow-user">
+      <div class="follow-user" v-if="!isSelf">
         <button type="button" name="button">+ 关注</button>
       </div>
     </section>
@@ -34,7 +34,8 @@ export default {
     return {
       headTitle: '详细资料',
       user: {},
-      message: 'Hello'
+      message: 'Hello',
+      isSelf: false
     }
   },
   methods: {
@@ -46,6 +47,9 @@ export default {
   mounted () {
     const postData = {
       'aid': this.$route.params.uid
+    }
+    if (this.$route.params.uid === this.$store.state.user.uid) {
+      this.isSelf = true
     }
     this.$http.post('/api/account/aid', postData).then(response => {
       this.user = response.data.data
