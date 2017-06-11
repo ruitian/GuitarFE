@@ -24,6 +24,14 @@ export default [
     component: resolve => require(['../pages/meet/Chat.vue'], resolve)
   },
   {
+    path: '/account/search',
+    component: resolve => require(['../pages/user/Search.vue'], resolve)
+  },
+  {
+    path: '/account/bindMail',
+    component: resolve => require(['../pages/user/BindMail.vue'], resolve)
+  },
+  {
     path: '/profile',
     component: resolve => require(['../pages/user/User.vue'], resolve),
     children: [
@@ -40,6 +48,10 @@ export default [
             component: resolve => require(['../pages/user/setting/children/About.vue'], resolve)
           }
         ]
+      },
+      {
+        path: 'index',
+        component: resolve => require(['../pages/user/Information.vue'], resolve)
       },
       // 动态
       {

@@ -1,7 +1,9 @@
 <template>
   <div class="container" :class="{'slide-open': showSlide}">
     <div class="content">
-      <router-view></router-view>
+      <transition name="router-fade" mode="out-in">
+         <router-view></router-view>
+      </transition>
     </div>
     <as-slip></as-slip>
     <div class="modal" v-show="showSlide"></div>
@@ -35,6 +37,14 @@
           }
         }, 50)
       }
+    },
+    mounted () {
+      setTimeout(() => {
+        this.$chatRecordSocket = new WebSocket('ws://127.0.0.1:8080/api/chat/record?id=' + this.$store.state.user.id)
+        this.$chatRecordSocket.onmessage = (event) => {
+          console.log(event)
+        }
+      }, 50)
     }
   }
 </script>
@@ -75,5 +85,20 @@
     width: 100%;
     background-color: rgba(0,0,0,.5);
     opacity: 0.8;
+  }
+
+  .router-slid-enter-active, .router-slid-leave-active {
+    transition: all .4s;
+  }
+  .router-slid-enter, .router-slid-leave-active {
+    transform: translate3d(2rem, 0, 0);
+    opacity: 0;
+  }
+
+  .router-fade-enter-active, .router-fade-leave-active {
+    transition: opacity .3s;
+  }
+  .router-fade-enter, .router-fade-leave-active {
+      opacity: 0;
   }
 </style>

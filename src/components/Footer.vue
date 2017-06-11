@@ -9,7 +9,7 @@
       </mt-tab-item>
       <mt-tab-item id="message" href="#/message" :class="$route.path.indexOf('message') !== -1? 'active' : ''">
         <img slot="icon" src="../assets/msg.png"> 消息
-        <mt-badge size="small" class="footer_badge" type="error" v-if="messages !== 0">{{ messages }}</mt-badge>
+        <mt-badge size="small" class="footer_badge" type="error" v-if="unReadCount !== 0">{{ unReadCount }}</mt-badge>
       </mt-tab-item>
       <mt-tab-item id="profile" href="#/profile" :class="$route.path.indexOf('profile') !== -1? 'active' : ''">
         <img slot="icon" src="../assets/my.png"> 我的
@@ -27,12 +27,20 @@ import {
 
 export default {
   name: 'footer',
+  data () {
+    return {
+      count: 0
+    }
+  },
   computed: {
     isLogin () {
       return this.$store.state.token
     },
     messages () {
       return this.$store.state.messageNum
+    },
+    unReadCount () {
+      return this.count
     }
   },
   components: {
@@ -44,6 +52,11 @@ export default {
     goToAddress (path) {
       this.$route.push(path)
     }
+  },
+  mounted () {
+    this.$http.get('/api/chat/unread/count').then(response => {
+      this.count = parseInt(response.data.data.count)
+    })
   }
 }
 </script>

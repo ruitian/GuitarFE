@@ -4,20 +4,20 @@
     <div class="profile-content">
       <div class="img_info">
         <div class="avatar">
-          <img src="../../assets/avatar.png" alt="">
+          <img :src="user.avatar_url" v-if="user.avatar_url" alt="">
+          <img src="../../assets/man.png" v-else alt="">
         </div>
         <div class="info">
           <span class="user_name">{{ username }}</span>
           <span class="user_uid">{{ uid }}</span>
         </div>
         <div class="func_span">
-          <router-link to='' class="btn">资料</router-link>
+          <router-link to='/profile/index' class="btn">资料</router-link>
         </div>
       </div>
       <div class="follow">
-        <span>最近来访</span> |
-        <span>关注 0</span> |
-        <span>粉丝 0</span>
+        <span>关注 {{ followed }}</span> |
+        <span>粉丝 {{ followers }}</span>
       </div>
       <div class="func_menu">
         <div class="up_img">
@@ -42,8 +42,8 @@
           <i class="fa fa-star" aria-hidden="true"></i> 我的动态
           <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
         </router-link>
-        <router-link class="cell" @click.native="getStudentInfo" to="/profile/student">
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i> 学生信息
+        <router-link class="cell" to='/account/bindMail'>
+          <i class="fa fa-envelope-o" aria-hidden="true"></i> 绑定邮箱
           <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
         </router-link>
         <div class="cell" to='/'>
@@ -81,8 +81,11 @@
     name: 'profile',
     data () {
       return {
+        user: this.$store.state.user,
         username: this.$store.state.user.nickname,
-        uid: this.$store.state.user.uid
+        uid: this.$store.state.user.uid,
+        followed: 0,
+        followers: 0
       }
     },
     components: {
@@ -99,6 +102,13 @@
           console.log(err)
         })
       }
+    },
+    mounted () {
+      this.$http.get('/api/account/follow/count').then(response => {
+        const data = response.data.data
+        this.followed = data.followed
+        this.followers = data.followers
+      })
     }
   }
 </script>
@@ -210,7 +220,7 @@
       span {
         display: inline-block;
         text-align: center;
-        width: 30%;
+        width: 45%;
       }
     }
     .func_menu {

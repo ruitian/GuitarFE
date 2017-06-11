@@ -65,6 +65,23 @@ Vue.filter('timeStampToWord', (timestamp) => {
   }
   return result
 })
+
+// 解析未读消息
+Vue.filter('chatToContent', (chat) => {
+  var content = JSON.parse(chat.content).content
+  return content
+})
+
+Vue.filter('chatToAvater', (chat) => {
+  var content = JSON.parse(chat.content)
+  return content.userFrom.avatarUrl
+})
+
+Vue.filter('chatToNickName', (chat) => {
+  var content = JSON.parse(chat.content)
+  return content.userFrom.nickName
+})
+
 new Vue({
   router,
   store,

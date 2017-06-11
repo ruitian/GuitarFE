@@ -127,7 +127,7 @@ export default {
       this.headTitle = '与' + this.userTo.nickName + '聊天'
     })
     // 创建Socket连接,注意服务地址
-    this.$socket = new WebSocket('ws://192.168.31.36:8080/api/chat?from=' + this.chatFrom + '&to=' + this.chatTo)
+    this.$socket = new WebSocket('ws://127.0.0.1:8080/api/chat?from=' + this.chatFrom + '&to=' + this.chatTo)
     this.$socket.onmessage = (event) => {
       this.chats.push(JSON.parse(event.data))
       setTimeout(() => {
